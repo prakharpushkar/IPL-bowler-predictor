@@ -10,7 +10,7 @@ class ApiService {
   // ══════════════════════════════════════════════════════════════════════
   //  ⚠️  UPDATE THIS URL to your backend address
   // ══════════════════════════════════════════════════════════════════════
-  static const String baseUrl = 'http://127.0.0.1:8000';
+  static const String baseUrl = 'https://ipl-bowler-predictor-production.up.railway.app';
 
   final http.Client _client;
 
