@@ -1,12 +1,16 @@
 import joblib
 import pandas as pd
+from pathlib import Path
+
+# ROOT_DIR is the IPL-bowler-predictor/ directory
+ROOT_DIR = Path(__file__).resolve().parent.parent
 
 #loading the model and the dataset
-model = joblib.load("xgb_model.pkl")
-features = joblib.load("models/feature_names.pkl")
-batter_lookup = pd.read_pickle("models/lookups/batter_lookup.pkl")
-bowler_lookup = pd.read_pickle("models/lookups/boler_lookup.pkl")
-interaction_lookup = pd.read_pickle("models/lookups/batter_bowler_interaction.pkl")
+model = joblib.load(ROOT_DIR / "backend/models/xgb_model.pkl")
+features = joblib.load(ROOT_DIR / "backend/models/feature_names.pkl")
+batter_lookup = pd.read_pickle(ROOT_DIR / "backend/models/lookups/batter_lookup.pkl")
+bowler_lookup = pd.read_pickle(ROOT_DIR / "backend/models/lookups/bowler_lookup.pkl")
+interaction_lookup = pd.read_pickle(ROOT_DIR / "backend/models/lookups/batter_bowler_interaction.pkl")
 
 
 # default map for missing players

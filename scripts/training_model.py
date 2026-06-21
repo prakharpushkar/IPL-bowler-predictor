@@ -6,8 +6,12 @@ from xgboost import plot_importance
 import pandas as pd
 import numpy as np
 import joblib
+from pathlib import Path
 
-df = pd.read_csv("data/processed/final_training_data.csv")
+# ROOT_DIR is the IPL-bowler-predictor/ directory
+ROOT_DIR = Path(__file__).resolve().parent.parent
+
+df = pd.read_csv(ROOT_DIR / "backend/data/processed/final_training_data.csv")
 
 X = df.drop(columns=['total_runs'])
 y = df['total_runs']
@@ -41,15 +45,15 @@ model.fit(
     verbose=50
 )
 
-model_filename = "xgb_model.pkl"
-feature_list_filename = "feature_names.pkl"
-batter_lookup_filename = "batter_lookup.pkl"
-bowler_lookup_filename  = "bowler_lookup.pkl"
-interaction_filename    = "batter_bowler_interaction.pkl"
+model_filename = str(ROOT_DIR / "backend/models/xgb_model.pkl")
+feature_list_filename = str(ROOT_DIR / "backend/models/feature_names.pkl")
+batter_lookup_filename = str(ROOT_DIR / "backend/models/lookups/batter_lookup.pkl")
+bowler_lookup_filename  = str(ROOT_DIR / "backend/models/lookups/bowler_lookup.pkl")
+interaction_filename    = str(ROOT_DIR / "backend/models/lookups/batter_bowler_interaction.pkl")
 
-batter_lookup = pd.read_csv("data/intermediate/batter_lookup.csv")
-bowler_lookup = pd.read_csv("data/intermediate/bowler_lookup.csv")
-interaction_lookup = pd.read_csv("data/intermediate/interaction.csv")
+batter_lookup = pd.read_csv(ROOT_DIR / "backend/data/intermediate/batter_lookup.csv")
+bowler_lookup = pd.read_csv(ROOT_DIR / "backend/data/intermediate/bowler_lookup.csv")
+interaction_lookup = pd.read_csv(ROOT_DIR / "backend/data/intermediate/interaction.csv")
 
 #saving 
 joblib.dump(model,model_filename)

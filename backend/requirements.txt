@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+xgboost
+pydantic
+pydantic-settings
+joblib
+pandas
+numpy
+scikit-learn
